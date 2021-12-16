@@ -16,7 +16,7 @@ Returns
 array
     the class distribution of the test. 
  """
-def MS_method(test_scores, tprfpr):
+def MS(test_scores, tprfpr):
     
     unique_scores  = np.arange(0.01,1,0.01)  #threshold values from 0.01 to 0.99  
     prevalances_array = []

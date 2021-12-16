@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+
 def EMQ(p_score, n_score, test, it=5, e=None):
     test = pd.Series(test)
     

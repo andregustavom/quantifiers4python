@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def classify_count(test_scores,thr=0.5):
+def CC(test_scores,thr=0.5):
     
     count = len([i for i in test_scores if i >= thr])
     

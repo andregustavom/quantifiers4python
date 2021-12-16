@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def Max(test_scores, tprfpr):
+def MAX(test_scores, tprfpr):
     
     diff_tpr_fpr = list(abs(tprfpr['tpr'] - tprfpr['fpr']))
     max_index = diff_tpr_fpr.index(max(diff_tpr_fpr))         #Finding index where (tpr-fpr) is maximum

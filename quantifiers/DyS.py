@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
 import qnt_utils as qntu
+import pdb
 
 
-
-def dys_method(pos_scores, neg_scores, test_scores, measure='topose'):
+def DyS(pos_scores, neg_scores, test_scores, measure='topose'):
     
     bin_size = np.linspace(2,20,10)  #[10,20] range(10,111,10) #creating bins from 2 to 10 with step size 2
     bin_size = np.append(bin_size, 30)
@@ -23,7 +23,6 @@ def dys_method(pos_scores, neg_scores, test_scores, measure='topose'):
         result.append(qntu.TernarySearch(0, 1, f))                                           
                         
     pos_prop = round(np.median(result),2)
-
     return pos_prop
     
 

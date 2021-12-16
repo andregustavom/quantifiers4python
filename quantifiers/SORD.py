@@ -22,7 +22,7 @@ Returns
 array
     the class distribution of the test.
 """
-def SORD_method(pos_scores, neg_scores,test_scores):
+def SORD(pos_scores, neg_scores,test_scores):
     
     #alpha = np.arange(0,1,0.01)  
     alpha = np.linspace(0,1,101)

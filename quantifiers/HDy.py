@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import qnt_utils as qntu
 
-def Hdy(pos_scores, neg_scores,test_scores):
+def HDy(pos_scores, neg_scores,test_scores):
     
     bin_size = np.linspace(10,110,11)       #creating bins from 10 to 110 with step size 10
     alpha_values = [round(x, 2) for x in np.linspace(0,1,101)]
@@ -22,12 +22,8 @@ def Hdy(pos_scores, neg_scores,test_scores):
             vDist.append(qntu.DyS_distance(((p_bin_count*alpha_values[x]) + (n_bin_count*(1-alpha_values[x]))), te_bin_count, measure="hellinger"))
 
         result.append(alpha_values[np.argmin(vDist)])
-        pos_prop = round(np.median(result),2)
         
-        num_bins.append(bins)
-    bin_proportion = pd.concat([pd.DataFrame(num_bins), pd.DataFrame(result)], axis=1)
-    bin_proportion.columns = ["bins","class_proportion"]
-    
+    pos_prop = round(np.median(result),2)    
     return pos_prop
     
 
