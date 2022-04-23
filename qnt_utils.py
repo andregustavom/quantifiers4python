@@ -69,3 +69,30 @@ def getHist(scores, nbins):
     for i in range(1,len(breaks)):
         re[i-1] = (re[i-1] + len(np.where((scores >= breaks[i-1]) & (scores < breaks[i]))[0]) ) / (len(scores)+1)
     return re
+
+
+"""This function implements MoSS. MoSS produces synthetic scores simulating distinct overlap scenarios of score distributions.
+ 
+Parameters
+----------
+n : integer
+    The number of scores for each label (posirive and negative).
+alpha : float
+    A float value ranged between [0-1], representing the positive label distribution.
+m : float
+    A float value representing the merging factor. When m=0, all positive observations have a score of one, while all negative 
+    observations have a score of zero, turning classification perfect and, as a consequence, quantification a trivial task.
+    On the other hand, when m=1, all scores for both classes are uniformly distributed within the interval [0,1], 
+    turning it impossible to distinguish between classes.
+Returns
+-------
+DataFrame
+    A DataFrame containing the artificial scores for positive and negative labels. 
+ """
+
+def MoSS(n, alpha, m):
+    p_score = np.random.uniform(0,1,int(n*alpha))**m
+    n_score = 1-np.random.uniform(0,1,int(n*(1- alpha)))**m    
+    scores  = pd.concat([pd.DataFrame(np.append(p_score, n_score)), pd.DataFrame(np.append(['1']*len(p_score), ['2']*len(n_score)))], axis=1)
+    scores.columns = ['score', 'label']
+    return scores
