@@ -91,8 +91,8 @@ DataFrame
  """
 
 def MoSS(n, alpha, m):
-    p_score = np.random.uniform(0,1,int(n*alpha))**m
-    n_score = 1-np.random.uniform(0,1,int(n*(1- alpha)))**m    
-    scores  = pd.concat([pd.DataFrame(np.append(p_score, n_score)), pd.DataFrame(np.append(['1']*len(p_score), ['2']*len(n_score)))], axis=1)
+    p_scores = np.random.uniform(0,1,int(n*alpha))**m
+    n_scores = 1-np.random.uniform(0,1,int(n*(1- alpha)))**m    
+    scores  = pd.concat([pd.DataFrame(np.append(p_scores, n_scores)), pd.DataFrame(np.append(['1']*len(p_scores), ['2']*len(n_scores)))], axis=1)
     scores.columns = ['score', 'label']
-    return scores
+    return p_scores, n_scores, scores
